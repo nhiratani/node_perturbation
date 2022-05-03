@@ -7,6 +7,8 @@
 #
 # Xavier-Glorot initialization
 #
+# Implemented with Tensorflow
+#
 import sys
 
 import tensorflow.compat.v1 as tf
@@ -81,7 +83,6 @@ def simul(K, width, batch_size, learning_rate, nepoch, seed):
         hs = []; hs.append(x)
         for k in range(1,K):
             hs.append( tf.nn.relu( tf.add( tf.matmul( hs[k-1], tf.transpose(ws[k-1]) ), bs[k-1] ) ) )
-        #pred = tf.nn.softmax( tf.add( tf.matmul( hs[K-1], tf.transpose(ws[K-1]) ), bs[K-1] ) )
         #linear readout
         pred = tf.add( tf.matmul( hs[K-1], tf.transpose(ws[K-1]) ), bs[K-1] )
     
@@ -90,7 +91,6 @@ def simul(K, width, batch_size, learning_rate, nepoch, seed):
         hs_np = []; hs_np.append(x)
         for k in range(1,K):
             hs_np.append( tf.nn.relu( tf.add( tf.add( tf.matmul(hs_np[k-1], tf.transpose(ws[k-1])), bs[k-1] ), xis[k-1]) ) )
-        #pred_np = tf.nn.softmax( tf.add( tf.add( tf.matmul(hs_np[K-1], tf.transpose(ws[K-1])), bs[K-1] ), xis[K-1]) )
         pred_np = tf.add( tf.add( tf.matmul(hs_np[K-1], tf.transpose(ws[K-1])), bs[K-1] ), xis[K-1])
         
         error = tf.reduce_sum( tf.multiply(pred-y, pred-y), 1 )
@@ -115,8 +115,7 @@ def simul(K, width, batch_size, learning_rate, nepoch, seed):
         wnorms = []
         for k in range(K):
             wnorms.append( tf.cast( tf.reduce_sum(tf.multiply(ws[k], ws[k])), tf.float32) )
-
-    #is_correct = tf.equal( tf.argmax(pred,1), tf.argmax(y,1) )
+            
     accuracy = 100.0*tf.reduce_mean( tf.cast(tf.equal( tf.argmax(pred,1), tf.argmax(y,1) ), tf.float32) )
     base_error = tf.reduce_mean( tf.multiply(pred-y, pred-y) )
 
@@ -174,9 +173,9 @@ def simul(K, width, batch_size, learning_rate, nepoch, seed):
 
 def main():
     param = sys.argv
-    K = int(param[1])
+    K = int(param[1]) #depth
     width = int(param[2])
-    batch_size = int(param[3])
+    batch_size = int(param[3]) 
     learning_rate = float(param[4])
     nepoch = int(param[5])
     seed = int(param[6])
