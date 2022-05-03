@@ -81,27 +81,5 @@ def calc_pl_dim(W1):
     trtmp = np.trace(Ctmp)
     return trtmp*trtmp/np.trace( np.dot(Ctmp, Ctmp) )
 
-#weight update with NP, under an adaptive learning rate
-def np_ada_weight_update(W1, W2, eta, x, yt, gm, n):
-    sigmap = 0.000001
-    Lh = len(W2[0]); Ly = len(W2)
-    eta_a = eta*(n**(-gm))
-    
-    hs = np.dot(W1,x)
-    ys = np.dot(W2,hs)
-    etmp = 0.5*np.dot(ys-yt, ys-yt)
-    
-    hxi = nrnd.normal(0.0, 1.0, (Lh))
-    yxi = nrnd.normal(0.0, 1.0, (Ly))
-    hp = hs + sigmap*hxi
-    yp = np.dot(W2, hp) + sigmap*yxi
-    eptmp = 0.5*np.dot(yp-yt, yp-yt)
-    
-    detmp = eptmp - etmp
-    W1 = W1 - (eta_a*detmp/sigmap)*np.outer( hxi, np.transpose(x) )
-    W2 = W2 - (eta_a*detmp/sigmap)*np.outer( yxi, np.transpose(hs) )
-    
-    return W1, W2
-
 if __name__ == "__main__":
     main()
