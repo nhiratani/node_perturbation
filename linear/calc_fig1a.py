@@ -21,7 +21,7 @@ from numpy import linalg as nlg
 from lin_st_theor import calc_eta_star
 from lin_st_model import xavier_weight_init, sample_generation, np_weight_update, calc_error_norm
 
-T = 100000
+T = 100000 #total number of iterations
 dt = 10
 
 def simul(Lx, Lh, Ly, sigmat, r_eta, r_winit2, ik):
