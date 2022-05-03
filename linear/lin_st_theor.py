@@ -1,10 +1,8 @@
 #
-# Deep linear NP
+# Deep linear NP and SGD
 #
 # Mean-field theory
-
-# Calculate the critical learning rate under Xavier-glorot initialization
-# for the error to reach zero
+#
 #
 from math import *
 import numpy as np
