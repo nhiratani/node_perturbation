@@ -33,6 +33,7 @@ for lridx in range( lrlen ):
     nepoch = nepochs[lridx]
     nrecord = int(floor( nepoch/dt ))
 
+    #readout the mean trajectory
     ts = []; ers = []; er_cnts = []
     for sidx in range(ikmax):
         seed = sidx
