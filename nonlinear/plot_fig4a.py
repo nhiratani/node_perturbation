@@ -16,11 +16,11 @@ import matplotlib.pyplot as plt
 clrs = ['C3', 'C4']
 
 K = 2
-widths = [50, 100, 200, 400, 800]#, 1600]
+widths = [50, 100, 200, 400, 800, 1600]
 batch_size = 100
 learning_rate = 0.0001
 nepoch = 10000
-ikmax = 3
+ikmax = 5
 dt = 1
 dS = int(floor( 44484/batch_size ))
 
@@ -61,8 +61,7 @@ for k in range(2):
     plt.plot(widths, cos_sims[1][k], 'o-', c=clrs[k])
 
 plt.loglog()
-#plt.xticks([50,100, 200, 400, 800, 1600], [50,100, 200, 400, 800, 1600])
-plt.xticks([50,100, 200, 400, 800], [50,100, 200, 400, 800])
+plt.xticks([50, 100, 200, 400, 800, 1600], [50, 100, 200, 400, 800, 1600])
 plt.yticks([])
 plt.yticks([0.03, 0.05, 0.1, 0.2], [0.03, 0.05, 0.1, 0.2])
 plt.show()
