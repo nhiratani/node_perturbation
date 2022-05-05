@@ -10,7 +10,6 @@
 import sys
 
 import tensorflow.compat.v1 as tf
-#import tensorflow as tf
 import numpy as np
 import scipy.io as sciio
 from math import *
@@ -162,7 +161,6 @@ def simul(K, width, batch_size, learning_rate, nepoch, lrule, seed):
         for k in range(K):
             wnorms.append( tf.cast( tf.reduce_sum(tf.multiply(ws[k], ws[k])), tf.float32) )
 
-    #is_correct = tf.equal( tf.argmax(pred,1), tf.argmax(y,1) )
     accuracy = 100.0*tf.reduce_mean( tf.cast(tf.equal( tf.argmax(pred,1), tf.argmax(y,1) ), tf.float32) )
     base_error = tf.reduce_mean( tf.multiply(pred-y, pred-y) )
 
@@ -210,7 +208,7 @@ def simul(K, width, batch_size, learning_rate, nepoch, lrule, seed):
 
 def main():
     param = sys.argv
-    K = int(param[1])
+    K = int(param[1]) #depth
     width = int(param[2])
     batch_size = int(param[3])
     learning_rate = float(param[4])
