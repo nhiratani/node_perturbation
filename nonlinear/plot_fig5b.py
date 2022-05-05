@@ -71,9 +71,10 @@ for llidx in range(len(lrules)):
                     perfs[ int(floor(lidx/dt)) ] += float(ltmps[1])/float(dt*ikmax)
                     lidx += 1
             
+            #detect the first time point at which the performance surpasses the threshold
             for tidx in range(1, len(perfs)):
                 if perfs[tidx-1] < perf_th and perf_th <= perfs[tidx]:
-                    training_times[wsidx][lridx] = tidx*dt + dt/2.0
+                    training_times[wsidx][lridx] = tidx*dt + dt/2.0; break;
 
     min_training_times = []
     for wsidx in range(len(width_scalings)):
