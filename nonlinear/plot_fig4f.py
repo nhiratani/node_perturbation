@@ -27,7 +27,7 @@ lrs = [0.000036,0.000024, 0.000018]
 nepochs = [3000, 30000]
 wreg_types = [0, 2]
 w1_scale = 10.0
-ikmax = 3#5
+ikmax = 5
 dt = 10
 
 plt.rcParams.update({'font.size': 16})
