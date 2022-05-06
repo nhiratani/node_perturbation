@@ -12,7 +12,6 @@
 import sys
 
 import tensorflow.compat.v1 as tf
-#import tensorflow as tf
 import numpy as np
 import scipy.io as sciio
 from math import *
@@ -177,7 +176,6 @@ def simul(K, width, batch_size, learning_rate, nepoch, wreg_type, w1_scale, seed
         for j in range( int(floor(n_train/batch_size)) ):
             perftmps = sess.run([base_error, update_ws, update_bs], feed_dict = train_dicts[j])
             train_error += perftmps[0]/float(n_train/batch_size)
-        #print(perftmps[0], perftmps[1])
 
         if i%10 == 0:
             if i == 0:
